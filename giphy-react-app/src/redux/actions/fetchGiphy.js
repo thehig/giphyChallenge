@@ -10,20 +10,20 @@ import {
 export function fetchGiphy() {
   return (dispatch) => {
     dispatch({
-      type:FETCH_GIPHY_BEGIN,
+      type: FETCH_GIPHY_BEGIN,
     });
     return new Promise((resolve, reject) => {
       axios.get('http://www.reddit.com/r/reactjs.json').then(
         (res) => {
           dispatch({
-            type:FETCH_GIPHY_SUCCESS,
+            type: FETCH_GIPHY_SUCCESS,
             data: res.data,
           });
           resolve(res);
         },
         (err) => {
           dispatch({
-            type:FETCH_GIPHY_FAILURE,
+            type: FETCH_GIPHY_FAILURE,
             data: { error: err },
           });
           reject(err);
@@ -35,7 +35,7 @@ export function fetchGiphy() {
 
 export function dismissFetchGiphyError() {
   return {
-    type:FETCH_GIPHY_DISMISS_ERROR,
+    type: FETCH_GIPHY_DISMISS_ERROR,
   };
 }
 

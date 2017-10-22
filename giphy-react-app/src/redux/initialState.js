@@ -1,9 +1,9 @@
-import { fromJS } from "immutable";
+import { fromJS } from 'immutable';
 
 const initialState = fromJS({
   giphyResults: [],
   fetchGiphyError: null,
-  fetchGiphyPending: false
+  fetchGiphyPending: false,
 });
 
 export default initialState;
