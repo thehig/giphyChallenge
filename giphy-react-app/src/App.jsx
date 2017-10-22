@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
-import Feature from './containers/Feature';
+import Feature from "./containers/Feature";
 
 class App extends Component {
   render() {
