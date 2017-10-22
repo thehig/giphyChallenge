@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import featureReducer from '../reducers';
+import { default as featureReducer } from '../actions/reducers';
 
 const reducerMap = {
     feature: featureReducer

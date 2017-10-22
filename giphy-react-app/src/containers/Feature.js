@@ -10,8 +10,13 @@ export class Feature extends Component {
   };
 
   render() {
+    // console.log(this.props);
+
+    const fetchGiphyError = this.props.feature.get('fetchGiphyError');
+    console.log(fetchGiphyError);
     return (
       <div>
+        { fetchGiphyError && <div>`${fetchGiphyError.stack}`</div>}
         <button onClick={this.props.actions.fetchGiphy}>Fetch Giphy</button>
       </div>
     );

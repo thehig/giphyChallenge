@@ -42,32 +42,25 @@ export function dismissFetchGiphyError() {
 export function reducer(state, action) {
   switch (action.type) {
     case FETCH_GIPHY_BEGIN:
-      return {
-        ...state,
-        fetchGiphyPending: true,
-        fetchGiphyError: null,
-      };
+      return state
+        .set('fetchGiphyPending', true)
+        .set('fetchGiphyError', null);
 
     case FETCH_GIPHY_SUCCESS:
-      return {
-        ...state,
-        fetchGiphyPending: false,
-        fetchGiphyError: null,
-        Giphy: action.data.data.children
-      };
+      return state
+        .set('fetchGiphyPending', false)
+        .set('fetchGiphyError', null)
+        .set('giphyResults', action.data.data.children);
 
     case FETCH_GIPHY_FAILURE:
-      return {
-        ...state,
-        fetchGiphyPending: false,
-        fetchGiphyError: action.data.error,
-      };
+      return state
+        .set('fetchGiphyPending', false)
+        .set('fetchGiphyError', null)
+        .set('fetchGiphyError', action.data.error);
 
     case FETCH_GIPHY_DISMISS_ERROR:
-      return {
-        ...state,
-        fetchGiphyError: null,
-      };
+      return state
+        .set('fetchGiphyError', null);
 
     default:
       return state;

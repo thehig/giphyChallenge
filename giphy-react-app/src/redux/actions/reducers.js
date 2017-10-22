@@ -1,8 +1,8 @@
-import initialState from './initialState';
-import { reducer as fetchGiphy } from './actions/fetchGiphy';
+import initialState from '../initialState';
+import { reducer as fetchGiphyReducer } from './fetchGiphy';
 
 const reducers = [
-  fetchGiphy
+  fetchGiphyReducer
 ];
 
 export default function reducer(state = initialState, action) {
