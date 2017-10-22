@@ -1,9 +1,7 @@
 import initialState from '../initialState';
 import { reducer as fetchGiphyReducer } from './fetchGiphy';
 
-const reducers = [
-  fetchGiphyReducer
-];
+const reducers = [fetchGiphyReducer];
 
 export default function reducer(state = initialState, action) {
   let newState;

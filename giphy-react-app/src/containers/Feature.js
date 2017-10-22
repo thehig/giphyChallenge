@@ -17,16 +17,16 @@ export class Feature extends Component {
     // console.log(fetchGiphyError);
     return (
       <div>
-        { fetchGiphyError && <div>`${fetchGiphyError.stack}`</div>}
+        {fetchGiphyError && <div>`${fetchGiphyError.stack}`</div>}
         <button onClick={this.props.actions.fetchGiphy}>Fetch Giphy</button>
       </div>
     );
-  };
+  }
 }
 
 function mapStateToProps(state) {
   return {
-    data: state.get('feature'),
+    data: state.get('feature')
   };
 }
 
@@ -36,7 +36,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Feature);
+export default connect(mapStateToProps, mapDispatchToProps)(Feature);

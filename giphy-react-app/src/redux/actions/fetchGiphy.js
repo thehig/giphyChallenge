@@ -4,30 +4,30 @@ import {
   FETCH_GIPHY_BEGIN,
   FETCH_GIPHY_SUCCESS,
   FETCH_GIPHY_FAILURE,
-  FETCH_GIPHY_DISMISS_ERROR,
+  FETCH_GIPHY_DISMISS_ERROR
 } from '../constants';
 
 export function fetchGiphy() {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({
-      type:FETCH_GIPHY_BEGIN,
+      type: FETCH_GIPHY_BEGIN
     });
     return new Promise((resolve, reject) => {
       axios.get('http://www.reddit.com/r/reactjs.json').then(
-        (res) => {
+        res => {
           dispatch({
-            type:FETCH_GIPHY_SUCCESS,
-            data: res.data,
+            type: FETCH_GIPHY_SUCCESS,
+            data: res.data
           });
           resolve(res);
         },
-        (err) => {
+        err => {
           dispatch({
-            type:FETCH_GIPHY_FAILURE,
-            data: { error: err },
+            type: FETCH_GIPHY_FAILURE,
+            data: { error: err }
           });
           reject(err);
-        },
+        }
       );
     });
   };
@@ -35,16 +35,14 @@ export function fetchGiphy() {
 
 export function dismissFetchGiphyError() {
   return {
-    type:FETCH_GIPHY_DISMISS_ERROR,
+    type: FETCH_GIPHY_DISMISS_ERROR
   };
 }
 
 export function reducer(state, action) {
   switch (action.type) {
     case FETCH_GIPHY_BEGIN:
-      return state
-        .set('fetchGiphyPending', true)
-        .set('fetchGiphyError', null);
+      return state.set('fetchGiphyPending', true).set('fetchGiphyError', null);
 
     case FETCH_GIPHY_SUCCESS:
       return state
@@ -59,8 +57,7 @@ export function reducer(state, action) {
         .set('fetchGiphyError', action.data.error);
 
     case FETCH_GIPHY_DISMISS_ERROR:
-      return state
-        .set('fetchGiphyError', null);
+      return state.set('fetchGiphyError', null);
 
     default:
       return state;
