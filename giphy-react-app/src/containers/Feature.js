@@ -7,13 +7,14 @@ import * as actions from '../redux/actions';
 export class Feature extends Component {
   static propTypes = {
     actions: PropTypes.object.isRequired,
+    data: PropTypes.shape({
+      fetchGiphyError: PropTypes.error
+    }).isRequired
   };
 
   render() {
-    // console.log(this.props);
-
-    const fetchGiphyError = this.props.feature.get('fetchGiphyError');
-    console.log(fetchGiphyError);
+    const fetchGiphyError = this.props.data.get('fetchGiphyError');
+    // console.log(fetchGiphyError);
     return (
       <div>
         { fetchGiphyError && <div>`${fetchGiphyError.stack}`</div>}
@@ -25,7 +26,7 @@ export class Feature extends Component {
 
 function mapStateToProps(state) {
   return {
-    feature: state.feature,
+    data: state.get('feature'),
   };
 }
 
