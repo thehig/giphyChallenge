@@ -1,0 +1,1 @@
+export { fetchGiphy } from './fetchGiphy';
