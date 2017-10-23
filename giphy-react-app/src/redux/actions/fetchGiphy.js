@@ -13,7 +13,7 @@ export function fetchGiphy() {
       type:FETCH_GIPHY_BEGIN,
     });
     return new Promise((resolve, reject) => {
-      axios.get('http://www.reddit.com/r/reactjs.json').then(
+      axios.get('https://api.giphy.com/v1/gifs/search').then(
         (res) => {
           dispatch({
             type:FETCH_GIPHY_SUCCESS,

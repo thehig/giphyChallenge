@@ -21,19 +21,27 @@ import initialState from "../initialState";
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
+// API Key
+
 describe("fetchGiphy", () => {
+  describe('action creator', () => {
+    // passes parameters
+    //    Predefined:
+    //      API Key
+    //      Pagination Size
+
+    //    Dynamic:
+    //      Search String
+    //      Pagination Index
+
+  }); //describe
+
   describe("dispatches", () => {
     afterEach(() => {
       nock.cleanAll();
     });
 
-    // it(`${FETCH_GIPHY_DISMISS_ERROR}`, () => {
-    //   expect(dismissFetchGiphyError()).to.deep.equal({
-    //     type: FETCH_GIPHY_DISMISS_ERROR
-    //   });
-    // });
-
-    it(`${FETCH_GIPHY_SUCCESS}`, () => {
+    it(`${FETCH_GIPHY_BEGIN} -> ${FETCH_GIPHY_SUCCESS}`, () => {
       const store = mockStore(initialState);
 
       nock("https://api.giphy.com")
@@ -47,7 +55,7 @@ describe("fetchGiphy", () => {
       });
     }); //it
 
-    it(`${FETCH_GIPHY_FAILURE}`, () => {
+    it(`${FETCH_GIPHY_BEGIN} -> ${FETCH_GIPHY_FAILURE}`, () => {
       const store = mockStore(initialState);
 
       nock("https://api.giphy.com")
@@ -60,7 +68,13 @@ describe("fetchGiphy", () => {
         expect(actions[1]).to.have.property("type", FETCH_GIPHY_FAILURE);
         expect(actions[1]).to.have.nested.property("data.error").that.exist;
       });
-    }); 
+    });
+
+    it(`${FETCH_GIPHY_DISMISS_ERROR}`, () => {
+      expect(dismissFetchGiphyError()).to.deep.equal({
+        type: FETCH_GIPHY_DISMISS_ERROR
+      });
+    });
   }); //describe
 
   describe("reducer", () => {
