@@ -8,28 +8,8 @@ import {
 } from '../constants';
 
 export function fetchGiphy() {
-  return (dispatch) => {
-    dispatch({
-      type:FETCH_GIPHY_BEGIN,
-    });
-    return new Promise((resolve, reject) => {
-      axios.get('https://api.giphy.com/v1/gifs/search').then(
-        (res) => {
-          dispatch({
-            type:FETCH_GIPHY_SUCCESS,
-            data: res.data,
-          });
-          resolve(res);
-        },
-        (err) => {
-          dispatch({
-            type:FETCH_GIPHY_FAILURE,
-            data: { error: err },
-          });
-          reject(err);
-        },
-      );
-    });
+  return {
+    type:FETCH_GIPHY_BEGIN
   };
 }
 

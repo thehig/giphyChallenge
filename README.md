@@ -5,6 +5,7 @@
 You are to create a Single Page JavaScript Application to display GIF results from Giphy's developer API https://github.com/giphy/GiphyAPI.
 
 The application should include the following features:
+
 * A control to show latest Cats or Dog results (no search field needed).
 * Results view with paging of 25 GIFs per page.
 * A detail view which shows the selected GIF when clicked/hovered/interacted with.
@@ -51,3 +52,9 @@ The application should include the following features:
         it "should take an Image Url as parameter"
         it "should create/unhide the lightbox"
         it "should display the selected image"
+
+## TODO
+
+* Add reselect
+* Add config
+* Implement API Call

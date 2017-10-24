@@ -1,11 +1,15 @@
 import _ from "lodash";
 import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
 import nock from "nock";
 import { expect } from "chai";
 import { fromJS } from "immutable";
+import createSagaMiddleware from 'redux-saga'
 
 import "../../../test/beforeAll.js";
+import sagas from '../sagas';
+
+const sagaMiddleware = createSagaMiddleware();
+
 import { exampleSearch } from "./fetchGiphy.mock";
 
 import {
@@ -18,7 +22,7 @@ import {
 import { fetchGiphy, dismissFetchGiphyError, reducer } from "./fetchGiphy";
 import initialState from "../initialState";
 
-const middlewares = [thunk];
+const middlewares = [sagaMiddleware];
 const mockStore = configureMockStore(middlewares);
 
 // API Key
@@ -44,6 +48,8 @@ describe("fetchGiphy", () => {
     it(`${FETCH_GIPHY_BEGIN} -> ${FETCH_GIPHY_SUCCESS}`, () => {
       const store = mockStore(initialState);
 
+      sagaMiddleware.run(sagas);
+
       nock("https://api.giphy.com")
         .get("/v1/gifs/search")
         .reply(200, exampleSearch);
@@ -57,6 +63,8 @@ describe("fetchGiphy", () => {
 
     it(`${FETCH_GIPHY_BEGIN} -> ${FETCH_GIPHY_FAILURE}`, () => {
       const store = mockStore(initialState);
+      
+      sagaMiddleware.run(sagas);
 
       nock("https://api.giphy.com")
         .get("/v1/gifs/search")
